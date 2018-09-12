@@ -32,6 +32,7 @@ var reportChangeRoute = require('./routes/reportChangeRoute');
 var reportBlock = require('./routes/reportBlock');
 var BusRoute = require('./routes/BusRoute');
 var reportChangeDevice = require('./routes/reportChangeDevice');
+var getETA = require('./routes/getETA')
 var topUp = require('./routes/topUp')
 var app = express();
 // view engine setup
@@ -76,6 +77,7 @@ app.use('/muflarHistoryWeekly', muflarHistoryWeekly);
 app.use('/totalAmountWeekly', totalAmount);
 app.use('/topUp',topUp);
 app.use('/newIssueCard',newIssueCard);
+app.use('/busService',getETA);	
 //app.use('/busTracking', busTracking);
 
 
