@@ -40,6 +40,12 @@ var RouteFare={
         getRouteFareByFareType: function (FareType, callback) {
             return db.query("select * from routefare where FareType=?", [FareType], callback);
         },
+        
+        getBusesByRoute: function (req, callback) {
+            return db.query('SELECT BUSSTOPS.LAT AS BUS_STOP_LAT, BUSSTOPS.LONG AS BUS_STOP_LONG, BUSROUTE.CURLAT, BUSROUTE.CURLONG, TABLE_ROUTEFARE.BUSROUTE, TABLE_ROUTEFARE.FARE FROM TABLE_ROUTEFARE INNER JOIN BUSROUTE ON TABLE_ROUTEFARE.BUSROUTE=BUSROUTE.BUSROUTE INNER JOIN BUSSTOPS ON BUSROUTE.BUSROUTE=BUSSTOPS.BUSROUTE AND TABLE_ROUTEFARE.FROM=BUSSTOPS.STOPS WHERE TABLE_ROUTEFARE.From = ? AND TABLE_ROUTEFARE.To = ?',
+            [req.body.Origin,req.body.Destination], callback);
+        }
+
     
 };
 module.exports=RouteFare;
