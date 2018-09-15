@@ -53,4 +53,15 @@ router.put('/block/:id', function (req, res, next) {
     });
 });
 
+var busRoute = require('../models/BusRoute');
+
+
+router.put('/updateLocation',function(req,res,next){
+    busRoute.updateBusLocation(req,function(err,rows){
+        if(err)
+         {res.json(err)}
+        else{res.json(rows)};
+    });
+});
+
 module.exports = router;

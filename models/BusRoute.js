@@ -22,6 +22,11 @@ var BusRoute = {
     },
     deleteBusRoute: function (id, BusRoute, callback) {
         return db.query("delete from busroute where BusRoute = ?", [id], callback);
+    },
+    updateBusLocation: function (request,callback) {
+        return db.query("update busroute set CutLat=?, CurLong=? where Bus_ID = ? and BusRoute=?",
+        [request.body.CurrentLatitude,,request.body.CurrentLongitude,request.body.Bus_ID,request.body.BusRoute],
+        callback)
     }
 };
 module.exports = BusRoute;
