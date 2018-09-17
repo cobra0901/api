@@ -7,7 +7,7 @@ var muflarCommissionWeekly = {
                 if (result[0][0]) {
                     const week = result[0][0].week;
                     const year = result[0][0].year;
-                    return db.query(`select Id, BusID, DateStart, DateEnd,MuflarCommission, Week, Year  from muflardb.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, id], callback)
+                    return db.query(`select Id, BusID, DateStart, DateEnd,MuflarCommission, Week, Year  from demo.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, id], callback)
                 }
                 else {
                     return callback(`No record found.`);
@@ -25,7 +25,7 @@ var muflarCommissionWeekly = {
                 if (result[0][0]) {
                     const week = result[0][0].week;
                     const year = result[0][0].year;
-                    return db.query(`select Id, BusID, DateStart, DateEnd,TotalAmount, Week, Year from muflardb.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, id], callback)
+                    return db.query(`select Id, BusID, DateStart, DateEnd,TotalAmount, Week, Year from demo.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, id], callback)
                 }
                 else {
                     return callback(`No record found.`);
