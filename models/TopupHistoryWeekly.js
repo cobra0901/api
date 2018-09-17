@@ -7,7 +7,7 @@ var TopupHistoryWeekly = {
                 if (result[0][0]) {
                     const week = result[0][0].week;
                     const year = result[0][0].year;
-                    return db.query(`select topupAmount, Week, Year,Id, BusID, DateStart, DateEnd  from muflardb.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, busId], callback);
+                    return db.query(`select topupAmount, Week, Year,Id, BusID, DateStart, DateEnd  from demo.dtransaction where (Week=? and Year=? and BusID=?) limit 1`, [week, year, busId], callback);
                 }
                 else {
                     return callback(`No record found.`);
