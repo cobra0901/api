@@ -4,7 +4,7 @@ var mysql = require('mysql');
 //     host: 'localhost',
 //     user: 'root',
 //     password: '',
-//     database: 'muflar'
+//     database: 'demo'
 // });
 
 var connection = mysql.createPool({
