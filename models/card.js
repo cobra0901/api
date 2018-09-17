@@ -38,7 +38,7 @@ var card = {
         return db.query("update card set Balance=? where CardNumber=?", [balance,id], callback);
     },
     addNewCardUser: function(request, callback) {
-        return db.query("Insert into card(FirstName,LastName,FareType,CardNumber,IsBlock,ValidFrom,ValidTo,Balance) values(?,?,?,?,?,?,?,?)",
+        return db.query("Insert into card(FirstName,LastName,FareType,CardNumber,IsBlock,ValidFrom,ValidTo,Balance) values(?,?,?,?,?,?,?,?,?)",
         [request.body.FirstName,request.body.LastName,request.body.FareType,request.body.CardNumber,
             request.body.IsBlock,request.body.ValidFrom,request.body.ValidTo,0],
         callback);
