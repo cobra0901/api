@@ -61,8 +61,41 @@ router.put('/updateLocation',function(req,res,next){
         if(err)
          {res.json(err)}
         else{res.json(rows)};
-    })
-})
+    });
+});
+
+router.get('/signin/:bus_id/:password?', function (req, res, next) {
+    driver.signinDriver(req.params.bus_id, req.params.password, function (err, rows) {
+        if (err) { res.json(err); }
+        else { res.json(rows[0]); }
+    });
+});
+
+router.post('/createcode', function (req, res, next) {
+    driver.createCodebyMobile(req.body, function (err, count) {
+        if (err) { res.json(err); }
+        else { res.json(req.body); }
+    });
+});
+
+router.post('/verifycode', function (req, res, next) {
+    driver.verifyCodebyMobile(req.body, function (err, rows) {
+        if (err) { res.json(err); }
+        else { res.json(rows[0]); }
+    });
+});
+
+router.put('/signup/:Mobile', function (req, res, next) {
+    driver.signupDriver(req.params.Mobile, req.body, function (err, rows) {
+        if (err) { res.json(err); }
+        else {
+            driver.getTaskById(req.body.Bus_ID, function (err, rows) {
+                if (err) { res.json(err); }
+                else { res.json(rows[0]); }
+            });
+        }
+    });
+});
 
 
 module.exports = router;

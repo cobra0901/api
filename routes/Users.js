@@ -35,4 +35,56 @@ router.delete('/:id', function (req, res, next) {
     });
 });
 
+router.get('/signin/:cardnumber/:password?', function (req, res, next) {
+    Users.signinUser(req.params.cardnumber, req.params.password, function (err, rows) {
+        if (err) { res.json(err); }
+        else { res.json(rows[0]); }
+    });
+});
+
+router.post('/createcode', function (req, res, next) {
+    Users.createCodebyMobile(req.body, function (err, count) {
+        if (err) { res.json(err); }
+        else { res.json(req.body); }
+    });
+});
+router.post('/verifycode', function (req, res, next) {
+    Users.verifyCodebyMobile(req.body, function (err, rows) {
+        if (err) { res.json(err); }
+        else { res.json(rows[0]); }
+    });
+});
+router.put('/signup/:Mobile', function (req, res, next) {
+    Users.signupUser(req.params.Mobile, req.body, function (err, rows) {
+        if (err) { res.json(err); }
+        else {
+            Users.getUserByCardNumber(req.body.CardNumber, function (err, rows) {
+                if (err) { res.json(err); }
+                else { res.json(rows[0]); }
+            });
+        }
+    });
+});
+router.post('/signupBySocial', function (req, res, next) {
+    Users.getUserBySocial(req.body, function (err, rows) {
+        if (err) { res.json(err); }
+        else {
+            if(rows.length >0)
+            {
+                res.json(rows[0])
+            }else{
+                Users.signupBySocial(req.body, function(err, rows){
+                    if(err) {res.json(err);}
+                    else {
+                        Users.getUserBySocial(req.body, function (err, rows) {
+                            if (err) { res.json(err); }
+                            else {res.json(rows[0])}
+                        });
+                    }
+                });
+            } 
+        }
+    });
+});
+
 module.exports=router;
