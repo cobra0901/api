@@ -27,18 +27,18 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-router.put('/:id', function (req, res, next) {
+// router.put('/:id', function (req, res, next) {
 
-    driver.updateReportChangeDevice(req.params.id, req.body, function (err, rows) {
+//     driver.updateReportChangeDevice(req.params.id, req.body, function (err, rows) {
 
-        if (err) {
-            res.json(err);
-        }
-        else {
-            res.json(rows);
-        }
-    });
-});
+//         if (err) {
+//             res.json(err);
+//         }
+//         else {
+//             res.json(rows);
+//         }
+//     });
+// });
 
 router.put('/block/:id', function (req, res, next) {
 
@@ -57,6 +57,7 @@ var busRoute = require('../models/BusRoute');
 
 
 router.put('/updateLocation',function(req,res,next){
+    console.log('here');
     busRoute.updateBusLocation(req,function(err,rows){
         if(err)
          {res.json(err)}

@@ -24,6 +24,10 @@ var BusRoute = {
         return db.query("delete from busroute where BusRoute = ?", [id], callback);
     },
     updateBusLocation: function (request,callback) {
+        console.log(request.body.CurrentLatitude)
+        console.log(request.body.CurrentLongitude)
+        console.log(request.body.Bus_ID)
+        console.log(request.body.BusRoute)
         return db.query("update busroute set CutLat=?,CurLong=? where Bus_ID = ? and BusRoute=?",
         [request.body.CurrentLatitude,request.body.CurrentLongitude,request.body.Bus_ID,request.body.BusRoute],
         callback)
