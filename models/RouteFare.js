@@ -48,6 +48,10 @@ var RouteFare={
         getBusesByOrigin: function (req, callback) {
             return db.query('SELECT BUSSTOPS.LAT AS BUS_STOP_LAT, BUSSTOPS.LONGTITUDE AS BUS_STOP_LONG, BUSROUTE.CUTLAT,BUSROUTE.BUS_ID , BUSROUTE.CURLONG,ROUTEFARE.BUSROUTE, ROUTEFARE.FARE FROM ROUTEFARE INNER JOIN BUSROUTE ON ROUTEFARE.BUSROUTE=BUSROUTE.BUSROUTE INNER JOIN BUSSTOPS ON BUSROUTE.BUSROUTE=BUSSTOPS.BUSROUTE AND ROUTEFARE.FROM_ROUTE=BUSSTOPS.STOPS WHERE ROUTEFARE.FROM_ROUTE = ?',
             [req.body.Origin], callback);
+        },
+        getBusDestination: function(route,callback) { 
+            return db.query('SELECT busstops.Stops FROM busstops where busstops.id = (select MAX(busstops.id) FROM BUSSTOPS WHERE BUSSTOPS.BUSROUTE = ?)',
+            [route],callback)
         }
   
 };
